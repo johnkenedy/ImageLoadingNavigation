@@ -3,9 +3,11 @@ package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestina
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.johnkenedy.imageloadingnavigation.domain.DestinationDataSource
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -14,6 +16,8 @@ class TravelDestinationsViewModel(
     private val repository: DestinationDataSource
 ) : ViewModel() {
 
+    private val eventChannel = Channel<TravelDestinationsEvent>()
+    val events = eventChannel.receiveAsFlow()
     private val _state = MutableStateFlow(TravelDestinationsState())
     val state = _state
         .onStart { loadDestinations() }
@@ -45,6 +49,8 @@ class TravelDestinationsViewModel(
     }
 
     private fun onDestinationClick(imageUrls: List<String>) {
-        // TODO
+        viewModelScope.launch {
+            eventChannel.send(TravelDestinationsEvent.NavigateToGallery(imageUrls = imageUrls))
+        }
     }
 }
