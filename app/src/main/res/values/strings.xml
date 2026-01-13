@@ -3,4 +3,5 @@
     <string name="icon_ponting_to_the_right_description">Icon ponting to the right</string>
     <string name="icon_ponting_to_the_left_description">Icon ponting to the left</string>
     <string name="error_loading_image">Error loading image</string>
+    <string name="back_button_content_description">Navigate back</string>
 </resources>
