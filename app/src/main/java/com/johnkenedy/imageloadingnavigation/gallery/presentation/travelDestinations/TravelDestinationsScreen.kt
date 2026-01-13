@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.johnkenedy.imageloadingnavigation.R
+import com.johnkenedy.imageloadingnavigation.core.presentation.util.ObserveAsEvents
 import com.johnkenedy.imageloadingnavigation.core.ui.theme.ImageLoadingNavigationTheme
 import com.johnkenedy.imageloadingnavigation.core.ui.theme.backgroundMainGradient
 import com.johnkenedy.imageloadingnavigation.gallery.domain.Destination
@@ -32,10 +33,17 @@ import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinat
 import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.util.getDrawableIdForDestination
 
 @Composable
-fun TravelGalleryScreenRoot(
+fun TravelDestinationsScreenRoot(
+    onNavigateToGallery: (List<String>) -> Unit,
     viewModel: TravelDestinationsViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    
+    ObserveAsEvents(viewModel.events) {
+        when (it) {
+            is TravelDestinationsEvent.NavigateToGallery -> onNavigateToGallery(it.imageUrls)
+        }
+    }
 
     TravelGalleryScreen(
         state = state,
