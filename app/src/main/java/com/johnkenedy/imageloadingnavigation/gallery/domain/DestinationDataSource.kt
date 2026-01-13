@@ -1,6 +1,5 @@
-package com.johnkenedy.imageloadingnavigation.domain
+package com.johnkenedy.imageloadingnavigation.gallery.domain
 
-import com.johnkenedy.imageloadingnavigation.gallery.domain.Destination
 import kotlinx.coroutines.flow.Flow
 
 interface DestinationDataSource {
