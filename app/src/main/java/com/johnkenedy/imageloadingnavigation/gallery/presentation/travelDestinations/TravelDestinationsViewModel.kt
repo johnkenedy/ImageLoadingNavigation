@@ -1,10 +1,8 @@
-package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelGallery
+package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.johnkenedy.imageloadingnavigation.domain.DestinationDataSource
-import com.johnkenedy.imageloadingnavigation.presentation.TravelGalleryAction
-import com.johnkenedy.imageloadingnavigation.presentation.TravelGalleryState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -12,17 +10,17 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class TravelGalleryViewModel(
+class TravelDestinationsViewModel(
     private val repository: DestinationDataSource
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(TravelGalleryState())
+    private val _state = MutableStateFlow(TravelDestinationsState())
     val state = _state
         .onStart { loadDestinations() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),
-            initialValue = TravelGalleryState()
+            initialValue = TravelDestinationsState()
         )
 
     private fun loadDestinations() {
@@ -39,9 +37,9 @@ class TravelGalleryViewModel(
         }
     }
 
-    fun onAction(action: TravelGalleryAction) {
+    fun onAction(action: TravelDestinationsAction) {
         when (action) {
-            is TravelGalleryAction.OnDestinationClick -> onDestinationClick(action.imageUrls)
+            is TravelDestinationsAction.OnDestinationClick -> onDestinationClick(action.imageUrls)
 
         }
     }
