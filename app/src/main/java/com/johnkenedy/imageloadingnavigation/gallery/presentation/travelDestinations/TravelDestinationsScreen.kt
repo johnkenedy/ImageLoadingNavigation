@@ -13,7 +13,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.johnkenedy.imageloadingnavigation.R
 import com.johnkenedy.imageloadingnavigation.core.presentation.util.ObserveAsEvents
 import com.johnkenedy.imageloadingnavigation.core.ui.theme.ImageLoadingNavigationTheme
@@ -31,11 +29,13 @@ import com.johnkenedy.imageloadingnavigation.gallery.domain.Destination
 import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.components.DestinationCard
 import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.components.IndicatorOrientation
 import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.util.getDrawableIdForDestination
+import org.koin.androidx.compose.koinViewModel
+import androidx.compose.runtime.Composable
 
 @Composable
 fun TravelDestinationsScreenRoot(
     onNavigateToGallery: (List<String>) -> Unit,
-    viewModel: TravelDestinationsViewModel = viewModel()
+    viewModel: TravelDestinationsViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     

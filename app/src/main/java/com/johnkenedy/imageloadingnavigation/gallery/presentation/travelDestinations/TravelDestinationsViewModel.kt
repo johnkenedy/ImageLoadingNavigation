@@ -2,7 +2,7 @@ package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestina
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.johnkenedy.imageloadingnavigation.domain.DestinationDataSource
+import com.johnkenedy.imageloadingnavigation.gallery.domain.DestinationDataSource
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class TravelDestinationsViewModel(
-    private val repository: DestinationDataSource
+    private val dataSource: DestinationDataSource
 ) : ViewModel() {
 
     private val eventChannel = Channel<TravelDestinationsEvent>()
@@ -32,7 +32,7 @@ class TravelDestinationsViewModel(
         
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-            repository.getDestinations().collect { destinations ->
+            dataSource.getDestinations().collect { destinations ->
                 _state.update { it.copy(
                     destinations = destinations,
                     isLoading = false
