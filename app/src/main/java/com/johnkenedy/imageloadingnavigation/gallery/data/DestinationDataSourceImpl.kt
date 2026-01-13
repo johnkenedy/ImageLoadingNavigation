@@ -1,6 +1,6 @@
 package com.johnkenedy.imageloadingnavigation.gallery.data
 
-import com.johnkenedy.imageloadingnavigation.domain.Destination
+import com.johnkenedy.imageloadingnavigation.gallery.domain.Destination
 import com.johnkenedy.imageloadingnavigation.domain.DestinationDataSource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow

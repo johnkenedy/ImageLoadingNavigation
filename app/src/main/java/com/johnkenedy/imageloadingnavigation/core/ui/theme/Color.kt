@@ -19,7 +19,7 @@ val LoadingStart = Color(0xFFDAEEFF)
 val LoadingEnd = Color(0xFFEDF7FF)
 val LoadingIndicatorBlue = Color(0xFF2196F3)
 
-val ColorScheme.loadingGradient: Brush
+val ColorScheme.backgroundMainGradient: Brush
     get() = verticalGradient(
         colors = listOf(
             LoadingStart,
@@ -34,4 +34,3 @@ val ColorScheme.errorGradient: Brush
             ErrorEnd
         )
     )
-

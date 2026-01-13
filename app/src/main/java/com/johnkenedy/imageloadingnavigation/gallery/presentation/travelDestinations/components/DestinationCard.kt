@@ -1,4 +1,4 @@
-package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelGallery.components
+package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -44,7 +44,7 @@ import com.johnkenedy.imageloadingnavigation.R
 import com.johnkenedy.imageloadingnavigation.core.ui.theme.ImageLoadingNavigationTheme
 import com.johnkenedy.imageloadingnavigation.core.ui.theme.LoadingIndicatorBlue
 import com.johnkenedy.imageloadingnavigation.core.ui.theme.errorGradient
-import com.johnkenedy.imageloadingnavigation.core.ui.theme.loadingGradient
+import com.johnkenedy.imageloadingnavigation.core.ui.theme.backgroundMainGradient
 
 @Composable
 fun DestinationCard(
@@ -131,7 +131,7 @@ private fun LoadingState() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(brush = MaterialTheme.colorScheme.loadingGradient),
+            .background(brush = MaterialTheme.colorScheme.backgroundMainGradient),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
