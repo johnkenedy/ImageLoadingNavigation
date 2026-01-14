@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class GalleryViewModel : ViewModel() {
 
@@ -27,8 +28,18 @@ class GalleryViewModel : ViewModel() {
 
     fun onAction(action: GalleryAction) {
         when (action) {
-            else -> TODO("Handle actions")
+            is GalleryAction.OnImageClick -> onImageClick(action.imageUrl)
+            is GalleryAction.OnDismissImage -> onDismissImage()
         }
+    }
+
+
+    private fun onImageClick(imageUrl: String) {
+        _state.update { it.copy(selectedImageUrl = imageUrl) }
+    }
+
+    private fun onDismissImage() {
+        _state.update { it.copy(selectedImageUrl = null) }
     }
 
 }

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -31,17 +32,19 @@ import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinat
 import com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.util.getDrawableIdForDestination
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.Composable
+import com.johnkenedy.imageloadingnavigation.gallery.presentation.gallery.route.GalleryRoute
+import com.johnkenedy.imageloadingnavigation.gallery.presentation.gallery.route.toGalleryRoute
 
 @Composable
 fun TravelDestinationsScreenRoot(
-    onNavigateToGallery: (List<String>) -> Unit,
+    onNavigateToGallery: (GalleryRoute) -> Unit,
     viewModel: TravelDestinationsViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     
     ObserveAsEvents(viewModel.events) {
         when (it) {
-            is TravelDestinationsEvent.NavigateToGallery -> onNavigateToGallery(it.imageUrls)
+            is TravelDestinationsEvent.NavigateToGallery -> onNavigateToGallery(it.galleryRouteItem)
         }
     }
 
@@ -99,7 +102,7 @@ fun TravelGalleryScreen(
                     onCardClick = {
                         onAction(
                             TravelDestinationsAction
-                                .OnDestinationClick(destination.imageUrls)
+                                .OnDestinationClick(destination.toGalleryRoute())
                         )
                     }
                 )
