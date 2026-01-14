@@ -6,7 +6,7 @@ A modern Android application built with Jetpack Compose that demonstrates image 
 
 | Destinations | Gallery | Error State |
 | :---: | :---: | :---: |
-| <!-- Add DestinationsScreen screenshot here --> | <!-- Add GalleryScreen screenshot here --> | <!-- Add ErrorState screenshot here --> |
+| <img src="https://github.com/user-attachments/assets/faf7c36a-b8a4-4e95-bf94-f2d03f551172" width="300" /> | <img src="https://github.com/user-attachments/assets/c6733425-2a7b-4d86-94ba-8eef116fce82" width="300" /> | <img src="https://github.com/user-attachments/assets/3452ef4c-eb0e-46cd-846c-2efd8270c79c" width="300" /> |
 
 ## Features
 
