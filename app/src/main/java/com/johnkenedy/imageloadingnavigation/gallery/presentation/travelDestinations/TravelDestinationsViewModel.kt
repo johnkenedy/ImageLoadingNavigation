@@ -3,6 +3,7 @@ package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestina
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.johnkenedy.imageloadingnavigation.gallery.domain.DestinationDataSource
+import com.johnkenedy.imageloadingnavigation.gallery.presentation.gallery.route.GalleryRoute
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -43,14 +44,14 @@ class TravelDestinationsViewModel(
 
     fun onAction(action: TravelDestinationsAction) {
         when (action) {
-            is TravelDestinationsAction.OnDestinationClick -> onDestinationClick(action.imageUrls)
+            is TravelDestinationsAction.OnDestinationClick -> onDestinationClick(action.galleryRouteItem)
 
         }
     }
 
-    private fun onDestinationClick(imageUrls: List<String>) {
+    private fun onDestinationClick(galleryRouteItem: GalleryRoute) {
         viewModelScope.launch {
-            eventChannel.send(TravelDestinationsEvent.NavigateToGallery(imageUrls = imageUrls))
+            eventChannel.send(TravelDestinationsEvent.NavigateToGallery(galleryRouteItem = galleryRouteItem))
         }
     }
 }

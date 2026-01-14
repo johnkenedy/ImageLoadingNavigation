@@ -22,8 +22,8 @@ fun NavigationRoot(
                 is Route.TravelDestinations -> {
                     NavEntry(key) {
                         TravelDestinationsScreenRoot(
-                            onNavigateToGallery = { imageUrls ->
-                                backStack.add(Route.Gallery(imageUrls))
+                            onNavigateToGallery = { destination ->
+                                backStack.add(Route.Gallery(destination))
                             }
                         )
                     }
@@ -31,7 +31,7 @@ fun NavigationRoot(
                 is Route.Gallery -> {
                     NavEntry(key) {
                         GalleryScreenRoot(
-                            imageUrls = key.imageUrls,
+                            galleryRouteItem = key.galleryRouteItem,
                             onBackClick = {
                                 backStack.removeAt(backStack.lastIndex)
                             }

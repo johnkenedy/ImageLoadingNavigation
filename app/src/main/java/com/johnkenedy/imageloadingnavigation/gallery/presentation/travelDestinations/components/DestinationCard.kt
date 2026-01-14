@@ -48,10 +48,10 @@ import com.johnkenedy.imageloadingnavigation.core.ui.theme.backgroundMainGradien
 
 @Composable
 fun DestinationCard(
-    title: String,
-    indicatorOrientation: IndicatorOrientation,
-    onCardClick: () -> Unit,
     modifier: Modifier = Modifier,
+    title: String? = null,
+    indicatorOrientation: IndicatorOrientation = IndicatorOrientation.RIGHT,
+    onCardClick: () -> Unit,
     imageUrl: String? = null,
     imageRes: Int? = null,
 ) {
@@ -85,7 +85,7 @@ fun DestinationCard(
                 error = { ErrorState() }
             )
 
-            if (isSuccess) {
+            if (isSuccess && title != null) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -153,7 +153,8 @@ private fun ErrorState() {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.alert_triangle),
             contentDescription = stringResource(R.string.error_loading_image),
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(40.dp),
+            tint = Color.Unspecified
         )
     }
 }

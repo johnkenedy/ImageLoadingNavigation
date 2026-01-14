@@ -1,4 +1,4 @@
-package com.johnkenedy.imageloadingnavigation.gallery.presentation.travelDestinations.components
+package com.johnkenedy.imageloadingnavigation.gallery.presentation.gallery.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
